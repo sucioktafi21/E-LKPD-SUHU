@@ -10,7 +10,7 @@
 <div style="
   font-family: 'Segoe UI', Arial, sans-serif;
   width: 100%;
-  max-width: 1000px;
+  max-width: 800px;
   margin: 10px auto;
   padding: 18px 22px;
   background: linear-gradient(145deg, #ffffff, #f0f7ff);
@@ -41,50 +41,38 @@
 
   <!-- TABEL HASIL PENGAMATAN SUHU -->
   <div style="font-size: 14px; font-weight: 700; color: #234d7d; margin-bottom: 8px;">
-    🧪 Pengaruh Suhu Terhadap Kesetimbangan Kimia
+    🧪 Pengaruh Suhu Terhadap Warna Larutan
   </div>
 
   <div style="overflow-x: auto; margin-bottom: 14px; border-radius: 12px; border: 1px solid #bfd8f6;">
-    <table style="width: 100%; border-collapse: collapse; background: #ffffff; font-size: 12px; text-align: center;">
+    <table style="width: 100%; border-collapse: collapse; background: #ffffff; font-size: 13px; text-align: center;">
       <thead>
         <tr style="background: #e6f0fa; color: #1769c2;">
-          <th style="padding: 10px 6px; border-bottom: 2px solid #bfd8f6; width: 20%;">Perlakuan</th>
-          <th style="padding: 10px 6px; border-bottom: 2px solid #bfd8f6; width: 15%;">Suhu (°C)</th>
-          <th style="padding: 10px 6px; border-bottom: 2px solid #bfd8f6; width: 20%;">Warna</th>
-          <th style="padding: 10px 6px; border-bottom: 2px solid #bfd8f6; width: 15%;">[Co(H₂O)₆]²⁺ (M)</th>
-          <th style="padding: 10px 6px; border-bottom: 2px solid #bfd8f6; width: 15%;">[Cl⁻] (M)</th>
-          <th style="padding: 10px 6px; border-bottom: 2px solid #bfd8f6; width: 15%;">[CoCl₄]²⁻ (M)</th>
+          <th style="padding: 10px 12px; border-bottom: 2px solid #bfd8f6; width: 34%;">Perlakuan</th>
+          <th style="padding: 10px 12px; border-bottom: 2px solid #bfd8f6; width: 33%;">Suhu (°C)</th>
+          <th style="padding: 10px 12px; border-bottom: 2px solid #bfd8f6; width: 33%;">Warna Larutan</th>
         </tr>
       </thead>
       <tbody>
         <!-- KONDISI AWAL -->
         <tr style="border-bottom: 1px solid #eef5fc;">
-          <td style="padding: 8px 4px; font-weight: 700; background: #f8fbff; text-align: left;">Kondisi Awal</td>
-          <td style="padding: 4px;"><input type="number" step="any" id="suhu_awal" placeholder="°C" style="width: 90%; padding: 6px; border: 1px solid #bfd8f6; border-radius: 6px; text-align: center;"></td>
-          <td style="padding: 4px;"><input type="text" id="warna_awal" placeholder="Warna larutan" style="width: 90%; padding: 6px; border: 1px solid #bfd8f6; border-radius: 6px; text-align: center;"></td>
-          <td style="padding: 4px;"><input type="number" step="any" id="co_h2o_awal" style="width: 90%; padding: 6px; border: 1px solid #bfd8f6; border-radius: 6px; text-align: center;"></td>
-          <td style="padding: 4px;"><input type="number" step="any" id="cl_awal" style="width: 90%; padding: 6px; border: 1px solid #bfd8f6; border-radius: 6px; text-align: center;"></td>
-          <td style="padding: 4px;"><input type="number" step="any" id="cocl4_awal" style="width: 90%; padding: 6px; border: 1px solid #bfd8f6; border-radius: 6px; text-align: center;"></td>
+          <td style="padding: 10px 8px; font-weight: 700; background: #f8fbff; text-align: left;">Kondisi Awal</td>
+          <td style="padding: 6px;"><input type="number" step="any" id="suhu_awal" placeholder="Contoh: 25" style="width: 90%; padding: 8px; border: 1px solid #bfd8f6; border-radius: 8px; text-align: center; font-family: inherit; font-size: 13px;"></td>
+          <td style="padding: 6px;"><input type="text" id="warna_awal" placeholder="Warna awal..." style="width: 90%; padding: 8px; border: 1px solid #bfd8f6; border-radius: 8px; text-align: center; font-family: inherit; font-size: 13px;"></td>
         </tr>
         
         <!-- SUHU DINAIKKAN -->
         <tr style="border-bottom: 1px solid #eef5fc;">
-          <td style="padding: 8px 4px; font-weight: 700; background: #f8fbff; text-align: left;">Suhu Dinaikkan</td>
-          <td style="padding: 4px;"><input type="number" step="any" id="suhu_naik" placeholder="°C" style="width: 90%; padding: 6px; border: 1px solid #bfd8f6; border-radius: 6px; text-align: center;"></td>
-          <td style="padding: 4px;"><input type="text" id="warna_naik" placeholder="Warna larutan" style="width: 90%; padding: 6px; border: 1px solid #bfd8f6; border-radius: 6px; text-align: center;"></td>
-          <td style="padding: 4px;"><input type="number" step="any" id="co_h2o_naik" style="width: 90%; padding: 6px; border: 1px solid #bfd8f6; border-radius: 6px; text-align: center;"></td>
-          <td style="padding: 4px;"><input type="number" step="any" id="cl_naik" style="width: 90%; padding: 6px; border: 1px solid #bfd8f6; border-radius: 6px; text-align: center;"></td>
-          <td style="padding: 4px;"><input type="number" step="any" id="cocl4_naik" style="width: 90%; padding: 6px; border: 1px solid #bfd8f6; border-radius: 6px; text-align: center;"></td>
+          <td style="padding: 10px 8px; font-weight: 700; background: #f8fbff; text-align: left;">Suhu Dinaikkan</td>
+          <td style="padding: 6px;"><input type="number" step="any" id="suhu_naik" placeholder="Contoh: 80" style="width: 90%; padding: 8px; border: 1px solid #bfd8f6; border-radius: 8px; text-align: center; font-family: inherit; font-size: 13px;"></td>
+          <td style="padding: 6px;"><input type="text" id="warna_naik" placeholder="Warna setelah dipanaskan..." style="width: 90%; padding: 8px; border: 1px solid #bfd8f6; border-radius: 8px; text-align: center; font-family: inherit; font-size: 13px;"></td>
         </tr>
         
         <!-- SUHU DITURUNKAN -->
         <tr>
-          <td style="padding: 8px 4px; font-weight: 700; background: #f8fbff; text-align: left;">Suhu Diturunkan</td>
-          <td style="padding: 4px;"><input type="number" step="any" id="suhu_turun" placeholder="°C" style="width: 90%; padding: 6px; border: 1px solid #bfd8f6; border-radius: 6px; text-align: center;"></td>
-          <td style="padding: 4px;"><input type="text" id="warna_turun" placeholder="Warna larutan" style="width: 90%; padding: 6px; border: 1px solid #bfd8f6; border-radius: 6px; text-align: center;"></td>
-          <td style="padding: 4px;"><input type="number" step="any" id="co_h2o_turun" style="width: 90%; padding: 6px; border: 1px solid #bfd8f6; border-radius: 6px; text-align: center;"></td>
-          <td style="padding: 4px;"><input type="number" step="any" id="cl_turun" style="width: 90%; padding: 6px; border: 1px solid #bfd8f6; border-radius: 6px; text-align: center;"></td>
-          <td style="padding: 4px;"><input type="number" step="any" id="cocl4_turun" style="width: 90%; padding: 6px; border: 1px solid #bfd8f6; border-radius: 6px; text-align: center;"></td>
+          <td style="padding: 10px 8px; font-weight: 700; background: #f8fbff; text-align: left;">Suhu Diturunkan</td>
+          <td style="padding: 6px;"><input type="number" step="any" id="suhu_turun" placeholder="Contoh: 5" style="width: 90%; padding: 8px; border: 1px solid #bfd8f6; border-radius: 8px; text-align: center; font-family: inherit; font-size: 13px;"></td>
+          <td style="padding: 6px;"><input type="text" id="warna_turun" placeholder="Warna setelah didinginkan..." style="width: 90%; padding: 8px; border: 1px solid #bfd8f6; border-radius: 8px; text-align: center; font-family: inherit; font-size: 13px;"></td>
         </tr>
       </tbody>
     </table>
@@ -105,12 +93,9 @@
 <script>
 (function () {
   const ids = [
-    // Kondisi Awal
-    "suhu_awal", "warna_awal", "co_h2o_awal", "cl_awal", "cocl4_awal",
-    // Suhu Dinaikkan
-    "suhu_naik", "warna_naik", "co_h2o_naik", "cl_naik", "cocl4_naik",
-    // Suhu Diturunkan
-    "suhu_turun", "warna_turun", "co_h2o_turun", "cl_turun", "cocl4_turun"
+    "suhu_awal", "warna_awal",
+    "suhu_naik", "warna_naik",
+    "suhu_turun", "warna_turun"
   ];
 
   const st = document.getElementById("st");
@@ -119,7 +104,6 @@
     try {
       ids.forEach(id => {
         const el = document.getElementById(id);
-        // Kunci disimpan menggunakan awalan "elkpd_suhu_"
         if (el) localStorage.setItem("elkpd_suhu_" + id, el.value.trim());
       });
       return true;
