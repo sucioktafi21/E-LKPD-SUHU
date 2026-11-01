@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabel Informasi</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: transparent;">
+
+<div style="
+  font-family:'Segoe UI',Arial,sans-serif;
+  width:100%;max-width:1000px;margin:0 auto;padding:16px 22px;
+  background:linear-gradient(145deg,#fff,#f0f7ff);
+  border:1px solid #d5e7ff;border-radius:18px;
+  box-shadow:0 6px 20px rgba(35,100,180,.10);
+  color:#19365b;box-sizing:border-box;
+">
+  <!-- HEADER -->
+  <div style="
+    background:linear-gradient(135deg,#1769c2,#63a7f5);
+    padding:13px 18px;border-radius:13px;margin-bottom:16px;
+    color:white;text-align:center;
+  ">
+    <div style="font-size:28px;">📚</div>
+    <div style="font-size:20px;font-weight:800;letter-spacing:0.5px;">
+      TABEL INFORMASI
+    </div>
+    <div style="font-size:13px;margin-top:4px;opacity:0.95;">
+      E-LKPD Interaktif · Kesetimbangan Kimia
+    </div>
+  </div>
+
+  <!-- TABEL INFORMASI MANDIRI -->
+  <div style="overflow-x: auto; margin-bottom: 14px; border-radius: 12px; border: 1px solid #bfd8f6;">
+    <table style="width: 100%; border-collapse: collapse; background: #ffffff; font-size: 13px;">
+      <thead>
+        <tr style="background: #e6f0fa; color: #1769c2; text-align: center;">
+          <th style="padding: 10px 8px; border-bottom: 2px solid #bfd8f6; width: 25%;">Sumber Literatur / Referensi</th>
+          <th style="padding: 10px 8px; border-bottom: 2px solid #bfd8f6; width: 45%;">Informasi yang Diperoleh</th>
+          <th style="padding: 10px 8px; border-bottom: 2px solid #bfd8f6; width: 30%;">Relevansi dengan Kasus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Baris 1 -->
+        <tr style="border-bottom: 1px solid #eef5fc;">
+          <td style="padding: 6px;">
+            <input type="text" id="sumber_1" placeholder="Contoh: Buku Kimia / Artikel..." style="width: 95%; padding: 8px; border: 1px solid #bfd8f6; border-radius: 8px; font-family: inherit; font-size: 13px; box-sizing: border-box;">
+          </td>
+          <td style="padding: 6px;">
+            <textarea id="info_1" placeholder="Tuliskan poin penting yang diperoleh..." style="width: 98%; height: 60px; padding: 8px; border: 1px solid #bfd8f6; border-radius: 8px; font-family: inherit; font-size: 13px; resize: vertical; box-sizing: border-box;"></textarea>
+          </td>
+          <td style="padding: 6px;">
+            <textarea id="relevansi_1" placeholder="Bagaimana keterkaitannya dengan kasus..." style="width: 98%; height: 60px; padding: 8px; border: 1px solid #bfd8f6; border-radius: 8px; font-family: inherit; font-size: 13px; resize: vertical; box-sizing: border-box;"></textarea>
+          </td>
+        </tr>
+        <!-- Baris 2 -->
+        <tr style="border-bottom: 1px solid #eef5fc;">
+          <td style="padding: 6px;">
+            <input type="text" id="sumber_2" placeholder="Sumber 2..." style="width: 95%; padding: 8px; border: 1px solid #bfd8f6; border-radius: 8px; font-family: inherit; font-size: 13px; box-sizing: border-box;">
+          </td>
+          <td style="padding: 6px;">
+            <textarea id="info_2" placeholder="Informasi yang diperoleh..." style="width: 98%; height: 60px; padding: 8px; border: 1px solid #bfd8f6; border-radius: 8px; font-family: inherit; font-size: 13px; resize: vertical; box-sizing: border-box;"></textarea>
+          </td>
+          <td style="padding: 6px;">
+            <textarea id="relevansi_2" placeholder="Relevansi dengan kasus..." style="width: 98%; height: 60px; padding: 8px; border: 1px solid #bfd8f6; border-radius: 8px; font-family: inherit; font-size: 13px; resize: vertical; box-sizing: border-box;"></textarea>
+          </td>
+        </tr>
+        <!-- Baris 3 -->
+        <tr>
+          <td style="padding: 6px;">
+            <input type="text" id="sumber_3" placeholder="Sumber 3 (Opsional)..." style="width: 95%; padding: 8px; border: 1px solid #bfd8f6; border-radius: 8px; font-family: inherit; font-size: 13px; box-sizing: border-box;">
+          </td>
+          <td style="padding: 6px;">
+            <textarea id="info_3" placeholder="Informasi yang diperoleh..." style="width: 98%; height: 60px; padding: 8px; border: 1px solid #bfd8f6; border-radius: 8px; font-family: inherit; font-size: 13px; resize: vertical; box-sizing: border-box;"></textarea>
+          </td>
+          <td style="padding: 6px;">
+            <textarea id="relevansi_3" placeholder="Relevansi dengan kasus..." style="width: 98%; height: 60px; padding: 8px; border: 1px solid #bfd8f6; border-radius: 8px; font-family: inherit; font-size: 13px; resize: vertical; box-sizing: border-box;"></textarea>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- STATUS PENYIMPANAN -->
+  <div id="st" role="status" aria-live="polite" style="
+    min-height:22px;font-size:14px;margin-top:6px;
+    text-align:center;font-weight:600;line-height:1.5;
+  "></div>
+
+  <!-- FOOTER -->
+  <div style="text-align:center;margin-top:12px;font-size:12px;color:#7189a7;">
+    ✦ Isian tersimpan otomatis di perangkat · Lanjut ke slide Fase berikutnya ✦
+  </div>
+</div>
+
+<script>
+(function () {
+  const elemIds = [
+    "sumber_1", "info_1", "relevansi_1",
+    "sumber_2", "info_2", "relevansi_2",
+    "sumber_3", "info_3", "relevansi_3"
+  ];
+
+  const st = document.getElementById("st");
+
+  // 1. Simpan tabel dan rangkuman ke localStorage
+  function simpanLokal() {
+    try {
+      elemIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) localStorage.setItem("elkpd_suhu_f3_" + id, el.value.trim());
+      });
+
+      // Merangkum seluruh isi tabel agar mudah dikirim di pengumpulan akhir
+      const rangkumanFase3 = `
+[LITERATUR 1]
+Sumber: ${document.getElementById("sumber_1").value.trim()}
+Informasi: ${document.getElementById("info_1").value.trim()}
+Relevansi: ${document.getElementById("relevansi_1").value.trim()}
+
+[LITERATUR 2]
+Sumber: ${document.getElementById("sumber_2").value.trim()}
+Informasi: ${document.getElementById("info_2").value.trim()}
+Relevansi: ${document.getElementById("relevansi_2").value.trim()}
+
+[LITERATUR 3]
+Sumber: ${document.getElementById("sumber_3").value.trim()}
+Informasi: ${document.getElementById("info_3").value.trim()}
+Relevansi: ${document.getElementById("relevansi_3").value.trim()}
+      `.trim();
+
+      localStorage.setItem("elkpd_suhu_fase3", rangkumanFase3);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // 2. Muat kembali isi tabel saat slide dibuka
+  function muatLokal() {
+    try {
+      elemIds.forEach(id => {
+        const el = document.getElementById(id);
+        const val = localStorage.getItem("elkpd_suhu_f3_" + id);
+        if (el && val !== null) el.value = val;
+      });
+    } catch (e) {
+      st.textContent = "⚠️ Penyimpanan otomatis tidak tersedia di browser ini.";
+      st.style.color = "#d9534f";
+    }
+  }
+
+  // 3. Auto-save otomatis saat siswa mengetik
+  function simpanOtomatis() {
+    if (simpanLokal()) {
+      st.textContent = "💾 Tabel literatur tersimpan otomatis di perangkat.";
+      st.style.color = "#1769c2";
+    }
+  }
+
+  elemIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener("input", simpanOtomatis);
+    }
+  });
+
+  muatLokal();
+})();
+</script>
+
+</body>
+</html>
