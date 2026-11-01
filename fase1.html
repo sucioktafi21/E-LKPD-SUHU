@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fase 1 - Informasi Kasus</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: transparent; font-family: 'Segoe UI', Arial, sans-serif;">
+
+<div style="width: 100%; box-sizing: border-box; padding: 10px; background: #ffffff; border-radius: 12px; border: 1.5px solid #bfd8f6; box-shadow: 0 4px 10px rgba(0,0,0,0.04);">
+  
+  <textarea id="fase1_info" placeholder="Tuliskan fakta penting di sini...&#10;1. Fakta pertama...&#10;2. Fakta kedua..." style="
+    display: block; width: 100%; height: 130px; padding: 10px;
+    border: 1px solid #bfd8f6; border-radius: 8px;
+    background: #fff; color: #19365b; font-family: inherit;
+    font-size: 13px; line-height: 1.5; resize: vertical;
+    box-sizing: border-box; outline-color: #1769c2;
+  "></textarea>
+
+  <!-- STATUS PENYIMPANAN OTOMATIS -->
+  <div id="st" style="font-size: 11px; margin-top: 6px; color: #1769c2; text-align: right; font-weight: 600;"></div>
+
+</div>
+
+<script>
+(function () {
+  const KUNCI_STORAGE = "elkpd_fase1";
+  const inputInfo = document.getElementById("fase1_info");
+  const st = document.getElementById("st");
+
+  // Muat isi tersimpan saat slide dibuka
+  try {
+    const savedValue = localStorage.getItem(KUNCI_STORAGE);
+    if (savedValue) {
+      inputInfo.value = savedValue;
+    }
+  } catch (e) {
+    st.textContent = "⚠️ Penyimpanan lokal tidak aktif";
+  }
+
+  // Simpan otomatis tiap kali siswa mengetik
+  inputInfo.addEventListener("input", () => {
+    try {
+      localStorage.setItem(KUNCI_STORAGE, inputInfo.value.trim());
+      st.textContent = "💾 Jawaban tersimpan di perangkat";
+      st.style.color = "#1769c2";
+    } catch (e) {
+      st.textContent = "⚠️ Gagal menyimpan";
+      st.style.color = "#dc2626";
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
