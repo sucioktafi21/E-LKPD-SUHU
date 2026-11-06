@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jawaban Soal 3</title>
+</head>
+<body style="margin: 0; padding: 0; background: transparent; font-family: 'Segoe UI', Arial, sans-serif;">
+
+<div style="width: 100%; box-sizing: border-box; padding: 4px;">
+  <!-- Tombol Bantuan Simbol -->
+  <div style="margin-bottom: 6px; display: flex; gap: 6px; flex-wrap: wrap;">
+    <button type="button" onclick="insertSymbol('⇌')" style="padding: 4px 10px; border: 1.5px solid #1769c2; background: #eef6ff; color: #1769c2; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px;">⇌ (Panah Bolak-Balik)</button>
+    <button type="button" onclick="insertSymbol(' (aq) ')" style="padding: 4px 8px; border: 1px solid #ccc; background: #ffffff; border-radius: 6px; cursor: pointer; font-size: 12px; color: #333;">(aq)</button>
+    <button type="button" onclick="insertSymbol(' (g) ')" style="padding: 4px 8px; border: 1px solid #ccc; background: #ffffff; border-radius: 6px; cursor: pointer; font-size: 12px; color: #333;">(g)</button> 
+    <button type="button" onclick="insertSymbol(' (s) ')" style="padding: 4px 8px; border: 1px solid #ccc; background: #ffffff; border-radius: 6px; cursor: pointer; font-size: 12px; color: #333;">(g)</button>
+    <button type="button" onclick="insertSymbol(' (l) ')" style="padding: 4px 8px; border: 1px solid #ccc; background: #ffffff; border-radius: 6px; cursor: pointer; font-size: 12px; color: #333;">(g)</button>
+  </div>
+
+  <textarea id="soal3" placeholder="Tuliskan persamaan reaksi kesetimbangan di sini... (Klik tombol ⇌ di atas untuk memasukkan panah)" style="
+    width: 100%; height: 110px; padding: 10px; border: 1.5px solid #bfd8f6; border-radius: 10px;
+    background: #ffffff; color: #19365b; font-family: inherit; font-size: 13px; line-height: 1.5;
+    box-sizing: border-box; resize: vertical; outline-color: #1769c2; box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+  "></textarea>
+  <div id="st" style="font-size: 11px; margin-top: 4px; color: #1769c2; text-align: right; font-weight: 600;"></div>
+</div>
+
+<script>
+const input = document.getElementById("soal3");
+const st = document.getElementById("st");
+
+// Muat jawaban jika ada di storage
+input.value = localStorage.getItem("elkpd_suhu_soal3") || "";
+
+// Simpan otomatis saat mengetik
+input.addEventListener("input", () => {
+  localStorage.setItem("elkpd_suhu_soal3", input.value.trim());
+  st.textContent = "💾 Jawaban Soal 3 tersimpan di perangkat";
+});
+
+// Fungsi untuk menyisipkan simbol pada posisi kursor
+function insertSymbol(symbol) {
+  const start = input.selectionStart;
+  const end = input.selectionEnd;
+  const text = input.value;
+  
+  input.value = text.substring(0, start) + symbol + text.substring(end);
+  input.selectionStart = input.selectionEnd = start + symbol.length;
+  input.focus();
+  
+  localStorage.setItem("elkpd_suhu_soal3", input.value.trim());
+  st.textContent = "💾 Jawaban Soal 3 tersimpan di perangkat";
+}
+</script>
+
+</body>
+</html>
