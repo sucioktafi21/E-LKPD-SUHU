@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fase 6 - Evaluasi & Refleksi</title>
+</head>
+<body style="margin: 0; padding: 0; background: transparent; font-family: 'Segoe UI', Arial, sans-serif; color: #19365b;">
+
+<div style="width: 100%; box-sizing: border-box; padding: 6px;">
+
+  <!-- SOAL 1 -->
+  <div style="margin-bottom: 16px; background: #ffffff; padding: 12px; border-radius: 10px; border: 1.5px solid #bfd8f6; box-shadow: 0 3px 8px rgba(0,0,0,0.04);">
+    <label style="font-weight: 700; font-size: 13px; color: #1769c2; display: block; margin-bottom: 6px;">
+      🔍 Evaluasi Proses
+    </label>
+    <p style="font-size: 11.5px; margin: 0 0 10px 0; color: #444; line-height: 1.4;">
+      Bagaimana kelompokmu menilai alur penyelesaian masalah dan konsep kesetimbangan yang telah disusun dari Fase 1 hingga Fase 5?
+    </p>
+    
+    <!-- Pilihan Centang / Option -->
+    <div style="display: flex; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; font-size: 12px;">
+      <label style="cursor: pointer; display: flex; align-items: center; gap: 4px;">
+        <input type="radio" name="fase6_status" value="Sangat Sesuai"> 🟢 Sudah Sesuai
+      </label>
+      <label style="cursor: pointer; display: flex; align-items: center; gap: 4px;">
+        <input type="radio" name="fase6_status" value="Perlu Perbaikan"> 🟡 Ada Bagian Perlu Diperbaiki
+      </label>
+    </div>
+   <p style="font-size: 11.5px; margin: 0 0 10px 0; color: #444; line-height: 1.4;">
+      Apabila terdapat bagian yang perlu diperbaiki, tuliskan alasan perlunya perbaikan tersebut!
+    </p>
+    <!-- Kotak Alasan -->
+    <textarea id="fase6_soal1_alasan" placeholder="Jelaskan alasannya di sini..." style="
+      width: 100%; height: 80px; padding: 8px; border: 1px solid #ccc; border-radius: 8px;
+      font-family: inherit; font-size: 12px; line-height: 1.4; box-sizing: border-box; resize: vertical; outline-color: #1769c2;
+    "></textarea>
+  </div>
+
+  <!-- SOAL 2 -->
+  <div style="margin-bottom: 10px; background: #ffffff; padding: 12px; border-radius: 10px; border: 1.5px solid #bfd8f6; box-shadow: 0 3px 8px rgba(0,0,0,0.04);">
+    <label style="font-weight: 700; font-size: 13px; color: #1769c2; display: block; margin-bottom: 6px;">
+      💡 Pembetulan
+    </label>
+    <p style="font-size: 11.5px; margin: 0 0 8px 0; color: #444; line-height: 1.4;">
+      Tuliskan poin perbaikan, pemahaman baru, atau konsep penting yang kelompokmu dapatkan setelah pembelajaran!
+    </p>
+    
+    <textarea id="fase6_soal2_catatan" placeholder="Tuliskan catatan perbaikan dan pemahaman baru di sini..." style="
+      width: 100%; height: 90px; padding: 8px; border: 1px solid #ccc; border-radius: 8px;
+      font-family: inherit; font-size: 12px; line-height: 1.4; box-sizing: border-box; resize: vertical; outline-color: #1769c2;
+    "></textarea>
+  </div>
+
+  <div id="st" style="font-size: 11px; color: #1769c2; text-align: right; font-weight: 600;"></div>
+</div>
+
+<script>
+(function() {
+  const statusRadios = document.getElementsByName("fase6_status");
+  const alasanInput = document.getElementById("fase6_soal1_alasan");
+  const catatanInput = document.getElementById("fase6_soal2_catatan");
+  const st = document.getElementById("st");
+
+  function simpanData() {
+    let selectedStatus = "";
+    statusRadios.forEach(r => { if (r.checked) selectedStatus = r.value; });
+
+    localStorage.setItem("elkpd_suhu_fase6_status", selectedStatus);
+    localStorage.setItem("elkpd_suhu_fase6_alasan", alasanInput.value.trim());
+    localStorage.setItem("elkpd_suhu_fase6_catatan", catatanInput.value.trim());
+    
+    st.textContent = "💾 Jawaban Fase 6 tersimpan di perangkat";
+  }
+
+  // Load data lama
+  const savedStatus = localStorage.getItem("elkpd_fase6_status") || "";
+  statusRadios.forEach(r => { if (r.value === savedStatus) r.checked = true; });
+  alasanInput.value = localStorage.getItem("elkpd_fase6_alasan") || "";
+  catatanInput.value = localStorage.getItem("elkpd_fase6_catatan") || "";
+
+  // Event Listeners
+  statusRadios.forEach(r => r.addEventListener("change", simpanData));
+  alasanInput.addEventListener("input", simpanData);
+  catatanInput.addEventListener("input", simpanData);
+})();
+</script>
+
+</body>
+</html>
