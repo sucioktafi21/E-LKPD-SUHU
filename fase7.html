@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengumpulan e-LKPD</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: transparent; font-family: 'Segoe UI', Arial, sans-serif; color: #19365b;">
+
+<div style="width: 100%; max-width: 1000px; margin: 0 auto; box-sizing: border-box; padding: 16px 22px; background: linear-gradient(145deg, #fff, #f0f7ff); border: 1px solid #d5e7ff; border-radius: 18px; box-shadow: 0 6px 20px rgba(35,100,180,0.1);">
+
+  <!-- INPUT SKOR EDUPLAY MANDIRI -->
+  <div style="background: #eef6ff; padding: 14px; border-radius: 10px; border: 1.5px solid #bfd8f6; margin-bottom: 16px;">
+    <label style="font-size: 13px; font-weight: 700; color: #1769c2; display: block;">🏆 Nilai Kuis Eduplay :</label>
+    <input type="number" id="skor_eduplay" placeholder="Masukkan angka skor dari Eduplay (misal: 85)" style="width: 100%; padding: 10px; border: 1px solid #1769c2; border-radius: 8px; font-size: 14px; box-sizing: border-box; margin-top: 6px;">
+  </div>
+
+  <!-- TOMBOL FINISH -->
+  <button id="btnFinish" onclick="bukaKonfirmasi()" style="
+    width: 100%; padding: 13px; background: linear-gradient(135deg, #1769c2, #3989e8); color: white; border: none; border-radius: 10px;
+    font-size: 16px; font-weight: 800; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 12px rgba(23,105,194,0.3);
+  ">
+    🏁 Finish
+  </button>
+
+  <div id="statusKirim" style="font-size: 12px; text-align: center; margin-top: 10px; font-weight: 600;"></div>
+
+</div>
+
+<!-- POPUP MODAL KONFIRMASI -->
+<div id="modalKonfirmasi" style="
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(3px);
+  justify-content: center; align-items: center; z-index: 9999;
+">
+  <div style="
+    background: #ffffff; padding: 22px; border-radius: 16px; width: 88%; max-width: 380px;
+    text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); border: 1px solid #bfd8f6;
+  ">
+    <div style="font-size: 34px; margin-bottom: 6px;">⚠️</div>
+    <h3 style="margin: 0 0 8px 0; color: #1769c2; font-size: 16px; font-weight: 800;">Konfirmasi Pengumpulan</h3>
+    <p style="font-size: 12.5px; color: #444; line-height: 1.5; margin-bottom: 18px;">
+      Pastikan seluruh jawaban dari <b>Fase 1 sampai Fase 6</b> dan <b>Nilai Kuis Eduplay</b> sudah terisi dengan benar sebelum dikirim!
+    </p>
+    <div style="display: flex; gap: 10px; justify-content: center;">
+      <button onclick="tutupKonfirmasi()" style="
+        flex: 1; padding: 9px; border: 1px solid #cbd5e1; background: #f1f5f9; color: #475569;
+        border-radius: 8px; font-weight: 700; font-size: 12.5px; cursor: pointer;
+      ">
+        🔍 Cek Lagi
+      </button>
+      <button onclick="kirimLKPD()" style="
+        flex: 1; padding: 9px; border: none; background: #1769c2; color: white;
+        border-radius: 8px; font-weight: 700; font-size: 12.5px; cursor: pointer; box-shadow: 0 3px 8px rgba(23,105,194,0.3);
+      ">
+        🚀 Ya, Kirim Sekarang
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz9eUba_C8z6ClPcDDHCdUU0g1r3CODkftRKWDjkRmRJzCHeozdgw1aLcbJeTjNRQTx/exec";
+
+const skorEduplay = document.getElementById("skor_eduplay");
+const statusKirim = document.getElementById("statusKirim");
+const modalKonfirmasi = document.getElementById("modalKonfirmasi");
+
+// Otomatis muat skor jika pernah diisi sebelumnya
+skorEduplay.value = localStorage.getItem("elkpd_suhu_fase7_skor") || "";
+skorEduplay.addEventListener("input", () => {
+  localStorage.setItem("elkpd_suhu_fase7_skor", skorEduplay.value.trim());
+});
+
+function bukaKonfirmasi() {
+  modalKonfirmasi.style.display = "flex";
+}
+
+function tutupKonfirmasi() {
+  modalKonfirmasi.style.display = "none";
+}
+
+function kirimLKPD() {
+  tutupKonfirmasi();
+
+  const btn = document.getElementById("btnFinish");
+  btn.disabled = true;
+  btn.style.background = "#94a3b8";
+  btn.textContent = "⏳ Mengirim data...";
+  statusKirim.style.color = "#1769c2";
+  statusKirim.textContent = "Sedang mengirim E-LKPD...";
+
+   // Tarik data tabel praktikum suhu (fase4.html)
+  const dataTabelFase4 = `[Kondisi Awal]: Suhu=${localStorage.getItem("elkpd_suhu_suhu_awal") || "-"}°C, Warna=${localStorage.getItem("elkpd_suhu_warna_awal") || "-"} | [Suhu Dinaikkan]: Suhu=${localStorage.getItem("elkpd_suhu_suhu_naik") || "-"}°C, Warna=${localStorage.getItem("elkpd_suhu_warna_naik") || "-"} | [Suhu Diturunkan]: Suhu=${localStorage.getItem("elkpd_suhu_suhu_turun") || "-"}°C, Warna=${localStorage.getItem("elkpd_suhu_warna_turun") || "-"}`;
+  // Gabungkan Tabel + Soal Analisis Data (soal 1-4)
+  const gabunganFase4 = `--- TABEL PENGAMATAN (fase4.html) ---
+` + dataTabelFase4 + `
+
+--- SOAL ANALISIS DATA ---
+[Soal 1]: ` + (localStorage.getItem("elkpd_suhu_soal1") || "-") + `
+[Soal 2]: ` + (localStorage.getItem("elkpd_suhu_soal2") || "-") + `
+[Soal 3]: ` + (localStorage.getItem("elkpd_suhu_soal3") || "-") + `
+[Soal 4]: ` + (localStorage.getItem("elkpd_suhu_soal5") || "-");
+
+  // Semua data kelompok ditarik otomatis dari localStorage tanpa ditampilkan di layar
+  const payload = {
+    kode: localStorage.getItem("elkpd_suhu_kode") || "-",
+    nama: localStorage.getItem("elkpd_suhu_kelompok") || "-",
+    kelas: localStorage.getItem("elkpd_suhu_kelas") || "-",
+    anggota: localStorage.getItem("elkpd_suhu_anggota") || "-",
+    fase1_info: localStorage.getItem("elkpd_suhu_fase1") || "-",
+    fase2: "[Rumusan Masalah]: " + (localStorage.getItem("elkpd_suhu_fase2_masalah") || "-") + 
+           "\n[Hipotesis]: " + (localStorage.getItem("elkpd_suhu_fase2_hipotesis") || "-"),
+    fase3: localStorage.getItem("elkpd_suhu_fase3") || "-",
+    fase4: gabunganFase4,
+    fase5: localStorage.getItem("elkpd_suhu_fase5") || localStorage.getItem("elkpd_suhu_kesimpulan") || "-",
+    fase6: "Status: " + (localStorage.getItem("elkpd_suhu_fase6_status") || "-") + 
+           " | Alasan: " + (localStorage.getItem("elkpd_suhu_fase6_alasan") || "-") + 
+           " | Catatan: " + (localStorage.getItem("elkpd_suhu_fase6_catatan") || "-"),
+    fase7: skorEduplay.value.trim() || "-"
+  };
+
+  fetch(SCRIPT_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+  .then(() => {
+    statusKirim.style.color = "#16a34a";
+    statusKirim.innerHTML = "✅ <b>Berhasil!</b> Seluruh e-LKPD kelompokmu sudah terkirim.";
+    btn.textContent = "✅ Selesai & Terkirim!";
+
+    // 🧹 TAMBAHAN: Bersihkan memori browser setelah data sukses terkirim ke Sheets
+    localStorage.clear();
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    statusKirim.style.color = "#dc2626";
+    statusKirim.textContent = "❌ Gagal mengirim. Coba periksa koneksi internetmu.";
+    btn.disabled = false;
+    btn.style.background = "linear-gradient(135deg, #1769c2, #3989e8)";
+    btn.textContent = "🏁 Finish";
+  });
+}
+</script>
+
+</body>
+</html>
